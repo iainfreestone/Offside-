@@ -1,26 +1,12 @@
 <!-- SEO Footer -->
 <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
-        <nav class="footer-links" aria-label="Footer navigation">
-            <button class="footer-link"
-                onclick="document.querySelector('nav button[data-tab=&quot;home&quot;]').click()">Home</button>
-            <button class="footer-link"
-                onclick="document.querySelector('nav button[data-tab=&quot;learn&quot;]').click()">Learn the
-                Rule</button>
-            <button class="footer-link"
-                onclick="document.querySelector('nav button[data-tab=&quot;3d&quot;]').click()">Interactive
-                Trainer</button>
-            <button class="footer-link"
-                onclick="document.querySelector('nav button[data-tab=&quot;quiz&quot;]').click()">Quiz</button>
-            <button class="footer-link"
-                onclick="document.querySelector('nav button[data-tab=&quot;tips&quot;]').click()">Matchday Tips</button>
-        </nav>
         <nav class="footer-links" aria-label="Guide articles">
-            <a class="footer-link" href="guides/first-time-linesman.php">First Time Linesman</a>
-            <a class="footer-link" href="guides/common-offside-mistakes.php">Common Mistakes</a>
-            <a class="footer-link" href="guides/tricky-offside-scenarios.php">Tricky Scenarios</a>
-            <a class="footer-link" href="guides/club-assistant-referee-guide.php">AR Guide</a>
-            <a class="footer-link" href="guides/offside-rule-faq.php">Offside FAQ</a>
+            <a class="footer-link" href="guides/first-time-linesman">First Time Linesman</a>
+            <a class="footer-link" href="guides/common-offside-mistakes">Common Mistakes</a>
+            <a class="footer-link" href="guides/tricky-offside-scenarios">Tricky Scenarios</a>
+            <a class="footer-link" href="guides/club-assistant-referee-guide">AR Guide</a>
+            <a class="footer-link" href="guides/offside-rule-faq">Offside FAQ</a>
         </nav>
         <p class="footer-tagline">Built for parents standing on the touchline for the first time &mdash; the offside
             rule explained simply, with free interactive training scenarios based on real grassroots football

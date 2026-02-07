@@ -8,6 +8,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3K20J54Q5Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-3K20J54Q5Q');
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -17,20 +26,26 @@
     <meta name="keywords"
         content="offside rule explained, offside rule for parents, linesman tips, assistant referee guide, grassroots football, parent linesman" />
     <meta name="author" content="The Offside Rule Trainer" />
-    <link rel="canonical" href="https://www.yoursite.com/guides/<?php echo $article_slug; ?>" />
+    <link rel="canonical"
+        href="https://www.offsideexplained.com/guides/<?php echo htmlspecialchars($article_slug, ENT_QUOTES, 'UTF-8'); ?>" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="article" />
     <meta property="og:title" content="<?php echo htmlspecialchars($article_title); ?>" />
     <meta property="og:description" content="<?php echo htmlspecialchars($article_description); ?>" />
-    <meta property="og:url" content="https://www.yoursite.com/guides/<?php echo $article_slug; ?>" />
+    <meta property="og:url"
+        content="https://www.offsideexplained.com/guides/<?php echo htmlspecialchars($article_slug, ENT_QUOTES, 'UTF-8'); ?>" />
     <meta property="og:site_name" content="The Offside Rule Trainer" />
     <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://www.offsideexplained.com/og-image.php" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="<?php echo htmlspecialchars($article_title); ?>" />
     <meta name="twitter:description" content="<?php echo htmlspecialchars($article_description); ?>" />
+    <meta name="twitter:image" content="https://www.offsideexplained.com/og-image.php" />
 
     <!-- Schema.org Article -->
     <script type="application/ld+json">
@@ -49,7 +64,7 @@
         },
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://www.yoursite.com/guides/<?php echo $article_slug; ?>"
+            "@id": "https://www.offsideexplained.com/guides/<?php echo htmlspecialchars($article_slug, ENT_QUOTES, 'UTF-8'); ?>"
         }
     }
     </script>
@@ -64,23 +79,26 @@
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://www.yoursite.com/"
+                "item": "https://www.offsideexplained.com/"
             },
             {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Guides",
-                "item": "https://www.yoursite.com/#guides"
+                "item": "https://www.offsideexplained.com/#guides"
             },
             {
                 "@type": "ListItem",
                 "position": 3,
                 "name": "<?php echo htmlspecialchars($article_title); ?>",
-                "item": "https://www.yoursite.com/guides/<?php echo $article_slug; ?>"
+                "item": "https://www.offsideexplained.com/guides/<?php echo htmlspecialchars($article_slug, ENT_QUOTES, 'UTF-8'); ?>"
             }
         ]
     }
     </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 
     <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

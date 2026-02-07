@@ -108,7 +108,7 @@ include '../includes/article-header.php';
 
     <p>
         Worried about making these mistakes in a real match? Read our
-        <a href="common-offside-mistakes.php" class="guide-link">7 common offside mistakes</a> guide to know what
+        <a href="common-offside-mistakes" class="guide-link">7 common offside mistakes</a> guide to know what
         to watch out for.
     </p>
 </article>

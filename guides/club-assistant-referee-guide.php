@@ -122,9 +122,9 @@ include '../includes/article-header.php';
 
     <p>
         If you're brand new to the role, start with our
-        <a href="first-time-linesman.php" class="guide-link">First Time as Linesman</a> guide for a gentler
+        <a href="first-time-linesman" class="guide-link">First Time as Linesman</a> guide for a gentler
         introduction, or brush up on the
-        <a href="common-offside-mistakes.php" class="guide-link">7 common mistakes</a> to avoid.
+        <a href="common-offside-mistakes" class="guide-link">7 common mistakes</a> to avoid.
     </p>
 </article>
 

@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3K20J54Q5Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-3K20J54Q5Q');
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -12,22 +21,29 @@
     <meta name="keywords"
         content="offside rule explained, offside rule for parents, linesman tips, assistant referee guide, grassroots football, kids football offside, how to run the line, offside rule simplified, parent linesman, offside training" />
     <meta name="author" content="The Offside Rule Trainer" />
-    <link rel="canonical" href="https://www.yoursite.com/" />
+    <link rel="canonical" href="https://www.offsideexplained.com/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="The Offside Rule — Free Interactive Trainer for Parent Linesmen" />
     <meta property="og:description"
         content="Nervous about running the line? Learn the offside rule with our free 3D interactive trainer, quiz, and matchday tips for grassroots parents." />
-    <meta property="og:url" content="https://www.yoursite.com/" />
+    <meta property="og:url" content="https://www.offsideexplained.com/" />
     <meta property="og:site_name" content="The Offside Rule Trainer" />
     <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://www.offsideexplained.com/og-image.php" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt"
+        content="The Offside Rule Explained — Free Interactive 3D Trainer for Parent Linesmen" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="The Offside Rule — Free Interactive Trainer for Parent Linesmen" />
     <meta name="twitter:description"
         content="Free 3D interactive offside rule trainer, quiz, and matchday tips — made for parents running the line at grassroots kids' football." />
+    <meta name="twitter:image" content="https://www.offsideexplained.com/og-image.php" />
+    <meta name="twitter:image:alt" content="The Offside Rule Explained — Free Interactive 3D Trainer" />
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -35,13 +51,8 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "The Offside Rule Trainer",
-        "url": "https://www.yoursite.com/",
-        "description": "Free interactive offside rule trainer for parent linesmen at grassroots kids' football matches.",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.yoursite.com/?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
+        "url": "https://www.offsideexplained.com/",
+        "description": "Free interactive offside rule trainer for parent linesmen at grassroots kids' football matches."
     }
     </script>
     <script type="application/ld+json">
@@ -116,6 +127,9 @@
     }
     </script>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
     <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -143,3 +157,10 @@
         <button data-tab="guides">📚 Guides</button>
         <button data-tab="tips">💡 Matchday Tips</button>
     </nav>
+
+    <noscript>
+        <div style="text-align:center;padding:1.5em;background:#fef3c7;color:#92400e;font-family:sans-serif;">
+            This site requires JavaScript for the interactive 3D trainer, quiz, and tab navigation. Please enable
+            JavaScript to use all features.
+        </div>
+    </noscript>

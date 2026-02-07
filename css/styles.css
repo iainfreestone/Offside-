@@ -1821,3 +1821,84 @@ button:disabled {
     font-size: 1.35rem;
   }
 }
+
+/* ── Share Buttons ─────────────────────────────────── */
+.share-bar {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  margin: 2rem auto;
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+.share-bar-compact {
+  padding: 1.25rem 1rem;
+  margin: 1.5rem auto;
+}
+.share-label {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.15s,
+    opacity 0.15s;
+  font-family: inherit;
+}
+.share-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+.share-btn:active {
+  transform: scale(0.97);
+}
+.share-whatsapp {
+  background: #25d366;
+  color: #fff;
+}
+.share-facebook {
+  background: #1877f2;
+  color: #fff;
+}
+.share-twitter {
+  background: #000;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.share-copy {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.share-copy:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+@media (max-width: 480px) {
+  .share-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .share-btn {
+    justify-content: center;
+    padding: 0.65rem;
+  }
+}

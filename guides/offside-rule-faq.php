@@ -17,7 +17,7 @@ include '../includes/article-header.php';
     <p>
         <strong>No.</strong> You cannot be offside when receiving the ball directly from a throw-in. This is one of
         three exceptions — the others are goal kicks and corner kicks. This trips up more new linesmen than anything
-        else. See mistake #1 in our <a href="common-offside-mistakes.php" class="guide-link">common mistakes guide</a>.
+        else. See mistake #1 in our <a href="common-offside-mistakes" class="guide-link">common mistakes guide</a>.
     </p>
 
     <h3>Can you be offside in your own half?</h3>
@@ -36,7 +36,7 @@ include '../includes/article-header.php';
     <p>
         <strong>Yes.</strong> The rule refers to the "second-last opponent" — the goalkeeper is usually the last
         opponent (nearest their own goal), making the last outfield defender the second-last. If the GK is out of
-        position, the calculation changes. See our <a href="tricky-offside-scenarios.php" class="guide-link">tricky
+        position, the calculation changes. See our <a href="tricky-offside-scenarios" class="guide-link">tricky
             scenarios guide</a> for the "goalkeeper walkabout" situation.
     </p>
 
@@ -52,7 +52,7 @@ include '../includes/article-header.php';
         It depends. If the ball <strong>deflects</strong> off a defender (uncontrolled), the offside still counts. If
         the defender <strong>deliberately plays</strong> the ball (a clearance, pass, or attempt to gain control),
         offside resets. A deliberate save, however, does <strong>not</strong> reset offside. This is covered in
-        detail in our <a href="tricky-offside-scenarios.php" class="guide-link">tricky scenarios guide</a>.
+        detail in our <a href="tricky-offside-scenarios" class="guide-link">tricky scenarios guide</a>.
     </p>
 
     <h3>When should I raise my flag?</h3>
@@ -66,7 +66,7 @@ include '../includes/article-header.php';
     <p>
         The hand <strong>nearest the referee</strong>, so it's most visible to them. You'll switch hands at half-time
         when you swap ends. For more on flag technique, see our
-        <a href="club-assistant-referee-guide.php" class="guide-link">complete AR guide</a>.
+        <a href="club-assistant-referee-guide" class="guide-link">complete AR guide</a>.
     </p>
 
     <h3>What if I'm not sure?</h3>
