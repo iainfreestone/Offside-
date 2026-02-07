@@ -1,6 +1,5 @@
 <!-- ==================== 3D INTERACTIVE ==================== -->
 <section class="section" id="sec-3d">
-    <h2>🏟️ Interactive Scenarios</h2>
     <p>
         Watch the play unfold in 3D from the linesman's view. When the pass is
         made, the action <strong>freezes</strong> — make your call!
@@ -40,6 +39,19 @@
     </div>
 
     <div id="scene3d-container">
+        <!-- Start screen -->
+        <div class="start-screen" id="startScreen">
+            <div class="start-screen-inner">
+                <div class="start-screen-icon">🏟️</div>
+                <h3>Interactive Offside Trainer</h3>
+                <p>Watch 3D match scenarios from the linesman's view. When the pass is made, the action freezes — you
+                    make the call.</p>
+                <button class="hero-btn start-btn" id="btnStartTrainer" onclick="startTrainer()">
+                    ▶ Start Training
+                </button>
+                <span class="start-hint">Select a difficulty above, then press start</span>
+            </div>
+        </div>
         <div class="hud-overlay">
             <div class="hud-box">
                 <span class="label">SCENARIO</span>

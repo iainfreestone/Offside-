@@ -493,6 +493,7 @@ button:disabled {
   box-shadow: var(--shadow-lg);
   background: #0a0a0a;
   border: 1px solid var(--border-subtle);
+  min-height: 420px;
 }
 #scene3d-container canvas {
   display: block;
@@ -1727,5 +1728,96 @@ button:disabled {
   }
   .footer-links {
     gap: 1rem;
+  }
+}
+
+/* ── Start Screen ──────────────────────────────────── */
+.start-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 14, 23, 0.97) 0%,
+    rgba(0, 255, 135, 0.08) 100%
+  );
+  border-radius: 1rem;
+}
+.start-screen-inner {
+  text-align: center;
+  max-width: 440px;
+  padding: 2.5rem 2rem;
+}
+.start-screen-icon {
+  font-size: 3.5rem;
+  margin-bottom: 0.75rem;
+}
+.start-screen-inner h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.75rem;
+  color: #fff;
+  margin-bottom: 0.6rem;
+}
+.start-screen-inner > p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.start-screen-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+.start-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.55rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 255, 135, 0.1);
+}
+.start-feature span {
+  font-size: 1.15rem;
+  width: 1.5rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+.start-btn {
+  font-size: 1.15rem !important;
+  padding: 0.9rem 2.5rem !important;
+  animation: pulse-start 2s infinite;
+}
+@keyframes pulse-start {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 135, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(0, 255, 135, 0);
+  }
+}
+.start-hint {
+  display: block;
+  margin-top: 0.85rem;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+@media (max-width: 600px) {
+  .start-screen-inner {
+    padding: 1.5rem 1rem;
+  }
+  .start-screen-icon {
+    font-size: 2.5rem;
+  }
+  .start-screen-inner h3 {
+    font-size: 1.35rem;
   }
 }

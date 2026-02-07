@@ -128,7 +128,6 @@
 <body>
     <header>
         <div class="header-inner">
-            <div class="header-badge">⚽</div>
             <h1>The Offside Rule Explained Simply</h1>
             <p>
                 Free interactive training for parents running the line at grassroots kids' football

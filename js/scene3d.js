@@ -1733,19 +1733,18 @@
     }
   };
 
-  // ---- Tab activation hook ----
-  const origNavHandler = () => {
-    // Initialize 3D when tab becomes active
-    const sec3d = document.getElementById("sec-3d");
-    if (sec3d && sec3d.classList.contains("active")) {
-      init3D();
-    }
+  // ---- Start button ----
+  window.startTrainer = function () {
+    const startScreen = document.getElementById("startScreen");
+    if (startScreen) startScreen.style.display = "none";
+    init3D();
   };
 
-  // Override tab navigation to hook init
+  // ---- Tab activation hook ----
+  // When tab becomes active, show the start screen (don't auto-init)
   document.querySelectorAll("nav button").forEach((btn) => {
     btn.addEventListener("click", () => {
-      setTimeout(origNavHandler, 50);
+      // No auto-init — user must click Start Training
     });
   });
 })();
