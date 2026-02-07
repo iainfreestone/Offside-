@@ -1,5 +1,5 @@
 <!-- ==================== LEARN ==================== -->
-<section class="section active" id="sec-learn">
+<section class="section" id="sec-learn">
     <h2>What Is Offside?</h2>
 
     <div class="card">
