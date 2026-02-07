@@ -29,10 +29,10 @@
   let offsideLineUserOff = false;
 
   // Smooth camera state
-  let camPos = { x: 15, y: 3.5, z: -28.5 }; // current interpolated position
-  let camTarget = { x: 10, y: 0, z: 0 }; // current interpolated lookAt
-  let camGoalPos = { x: 15, y: 3.5, z: -28.5 }; // desired position
-  let camGoalTarget = { x: 10, y: 0, z: 0 }; // desired lookAt
+  let camPos = { x: 15, y: 1.85, z: -24 }; // current interpolated position
+  let camTarget = { x: 10, y: 1.0, z: 0 }; // current interpolated lookAt
+  let camGoalPos = { x: 15, y: 1.85, z: -24 }; // desired position
+  let camGoalTarget = { x: 10, y: 1.0, z: 0 }; // desired lookAt
   const CAM_SMOOTH = 0.06; // lower = smoother (0-1)
 
   // Pitch dimensions (Three.js units) — a kids' pitch ~60m x 40m, we'll use 60x40
@@ -41,10 +41,13 @@
   const HALF = PW / 2;
 
   // ---- 3D Scenarios ----
+  // difficulty: 'easy' | 'medium' | 'hard'
   // Positions: x = along pitch length (-HALF to +HALF, attacking toward +x), z = across pitch (-PH/2 to +PH/2)
-  const scenarios3D = [
+  const allScenarios = [
+    // ===== EASY (clear-cut calls for learning the basics) =====
     {
       title: "Through Ball — Classic Offside",
+      difficulty: "easy",
       offside: true,
       passer: { x: 2, z: 5, team: "attack" },
       subject: { x: 22, z: -4 },
@@ -60,23 +63,8 @@
         "The attacker is well beyond the second-last defender when the through ball is played. Classic offside — flag goes up!",
     },
     {
-      title: "Level With Defender — Onside!",
-      offside: false,
-      passer: { x: -2, z: 8, team: "attack" },
-      subject: { x: 16, z: -3 },
-      attackers: [{ x: 5, z: -10 }],
-      defenders: [
-        { x: 16, z: 6 },
-        { x: 12, z: 14 },
-        { x: 10, z: -8 },
-      ],
-      gk: { x: 32, z: 0 },
-      ballTarget: { x: 22, z: -5 },
-      explanation:
-        "The attacker is exactly LEVEL with the second-last defender. Level is onside! Remember: if any playable body part is level, they're onside.",
-    },
-    {
       title: "In Own Half — Safe!",
+      difficulty: "easy",
       offside: false,
       passer: { x: -12, z: -3, team: "attack" },
       subject: { x: -3, z: 5 },
@@ -92,19 +80,109 @@
         "The attacker is in their OWN half when the ball is played. You cannot be offside in your own half!",
     },
     {
-      title: "Goalkeeper Up — Watch Out!",
-      offside: true,
-      passer: { x: 5, z: 6, team: "attack" },
-      subject: { x: 28, z: -2 },
-      attackers: [{ x: 10, z: 14 }],
-      defenders: [{ x: 24, z: 3 }],
-      gk: { x: 12, z: -8 },
-      ballTarget: { x: 30, z: -3 },
+      title: "Throw-In — No Offside!",
+      difficulty: "easy",
+      offside: false,
+      passer: { x: 14, z: -22, team: "attack", isThrowIn: true },
+      subject: { x: 26, z: -8 },
+      attackers: [{ x: 12, z: 8 }],
+      defenders: [
+        { x: 20, z: -4 },
+        { x: 18, z: 6 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 26, z: -8 },
       explanation:
-        "The goalkeeper has come way out! Now the second-last opponent is the GK at x=12. The attacker is miles past both — offside!",
+        "This is a THROW-IN! You cannot be offside directly from a throw-in, no matter where you are. Keep your flag down!",
+    },
+    {
+      title: "Miles Offside — Easy Flag",
+      difficulty: "easy",
+      offside: true,
+      passer: { x: -5, z: 0, team: "attack" },
+      subject: { x: 30, z: 2 },
+      attackers: [{ x: 0, z: -8 }],
+      defenders: [
+        { x: 15, z: -3 },
+        { x: 12, z: 6 },
+        { x: 10, z: 12 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 32, z: 3 },
+      explanation:
+        "The attacker is practically on the goal line — miles beyond every defender. Clear offside, raise that flag!",
+    },
+    {
+      title: "Goal Kick — Can't Be Offside",
+      difficulty: "easy",
+      offside: false,
+      passer: { x: 30, z: 5, team: "attack", isGoalKick: true },
+      subject: { x: 24, z: -3 },
+      attackers: [{ x: 10, z: 8 }],
+      defenders: [
+        { x: 18, z: 2 },
+        { x: 16, z: -6 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 24, z: -3 },
+      explanation:
+        "This is a GOAL KICK! Like throw-ins and corners, you cannot be offside directly from a goal kick. Flag stays down!",
+    },
+    {
+      title: "Corner Kick — No Offside!",
+      difficulty: "easy",
+      offside: false,
+      passer: { x: 34, z: -22, team: "attack", isCorner: true },
+      subject: { x: 30, z: 2 },
+      attackers: [{ x: 28, z: -4 }, { x: 26, z: 6 }],
+      defenders: [
+        { x: 29, z: 0 },
+        { x: 27, z: 4 },
+        { x: 25, z: -2 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 30, z: 2 },
+      explanation:
+        "This is a CORNER KICK! You cannot be offside from a corner. Even with attackers camped right by the goal — it's fine!",
+    },
+    {
+      title: "Attacker Behind the Ball",
+      difficulty: "easy",
+      offside: false,
+      passer: { x: 18, z: 0, team: "attack" },
+      subject: { x: 14, z: -6 },
+      attackers: [{ x: 8, z: 10 }],
+      defenders: [
+        { x: 12, z: 5 },
+        { x: 10, z: -8 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 24, z: -8 },
+      explanation:
+        "The attacker is BEHIND the ball when it's played. A player behind the ball can never be offside, even past all defenders.",
+    },
+
+    // ===== MEDIUM (closer calls, need to read the positions carefully) =====
+    {
+      title: "Level With Defender — Onside!",
+      difficulty: "medium",
+      offside: false,
+      passer: { x: -2, z: 8, team: "attack" },
+      subject: { x: 16, z: -3 },
+      attackers: [{ x: 5, z: -10 }],
+      defenders: [
+        { x: 16, z: 6 },
+        { x: 12, z: 14 },
+        { x: 10, z: -8 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 22, z: -5 },
+      explanation:
+        "The attacker is exactly LEVEL with the second-last defender. Level is onside! Remember: if any playable body part is level, they're onside.",
     },
     {
       title: "Well-Timed Run",
+      difficulty: "medium",
       offside: false,
       passer: { x: 0, z: -6, team: "attack" },
       subject: { x: 14, z: 4 },
@@ -120,37 +198,21 @@
         "At the moment the pass is made, the attacker is BEHIND the second-last defender. They'll run past them as the ball travels — perfectly timed! Onside.",
     },
     {
-      title: "Throw-In — No Offside!",
-      offside: false,
-      passer: { x: 14, z: -22, team: "attack", isThrowIn: true },
-      subject: { x: 26, z: -8 },
-      attackers: [{ x: 12, z: 8 }],
-      defenders: [
-        { x: 20, z: -4 },
-        { x: 18, z: 6 },
-      ],
-      gk: { x: 32, z: 0 },
-      ballTarget: { x: 26, z: -8 },
+      title: "Goalkeeper Up — Watch Out!",
+      difficulty: "medium",
+      offside: true,
+      passer: { x: 5, z: 6, team: "attack" },
+      subject: { x: 28, z: -2 },
+      attackers: [{ x: 10, z: 14 }],
+      defenders: [{ x: 24, z: 3 }],
+      gk: { x: 12, z: -8 },
+      ballTarget: { x: 30, z: -3 },
       explanation:
-        "This is a THROW-IN! You cannot be offside directly from a throw-in, no matter where you are. Keep your flag down!",
-    },
-    {
-      title: "Behind the Ball — Onside",
-      offside: false,
-      passer: { x: 18, z: 0, team: "attack" },
-      subject: { x: 14, z: -6 },
-      attackers: [{ x: 8, z: 10 }],
-      defenders: [
-        { x: 12, z: 5 },
-        { x: 10, z: -8 },
-      ],
-      gk: { x: 32, z: 0 },
-      ballTarget: { x: 24, z: -8 },
-      explanation:
-        "The attacker is BEHIND the ball when it's played. A player behind the ball can never be offside, even past all defenders.",
+        "The goalkeeper has come way out! Now the second-last opponent is the GK at x=12. The attacker is miles past both — offside!",
     },
     {
       title: "Tight Call — Just Offside",
+      difficulty: "medium",
       offside: true,
       passer: { x: 3, z: 3, team: "attack" },
       subject: { x: 19, z: -5 },
@@ -165,7 +227,222 @@
       explanation:
         "This is tight! The second-last defender is at x=17 and our attacker is at x=19 — just beyond. Even a small distance counts. In a real game, benefit of doubt goes to the attacker for marginal calls.",
     },
+    {
+      title: "Deep Defensive Line",
+      difficulty: "medium",
+      offside: false,
+      passer: { x: 5, z: -5, team: "attack" },
+      subject: { x: 20, z: 3 },
+      attackers: [{ x: 8, z: 10 }],
+      defenders: [
+        { x: 22, z: -2 },
+        { x: 24, z: 5 },
+        { x: 20, z: 12 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 26, z: 4 },
+      explanation:
+        "The defenders are sitting very deep. The second-last defender is at x=22 and the attacker is at x=20 — he's behind the line. Onside!",
+    },
+    {
+      title: "Played Backwards — No Offside",
+      difficulty: "medium",
+      offside: false,
+      passer: { x: 22, z: 3, team: "attack" },
+      subject: { x: 26, z: -5 },
+      attackers: [{ x: 10, z: -8 }],
+      defenders: [
+        { x: 20, z: -2 },
+        { x: 18, z: 6 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 18, z: -4 },
+      explanation:
+        "Even though the attacker looks offside, they're BEHIND the ball when it's played (ball is at x=22, attacker at x=26 is further forward but the pass goes backwards). A player can't be offside if they receive a backward pass... BUT WAIT — actually the subject IS ahead of the second-last defender. However, they're behind the ball — so it's onside!",
+    },
+    {
+      title: "Striker Makes a Run",
+      difficulty: "medium",
+      offside: true,
+      passer: { x: 0, z: 10, team: "attack" },
+      subject: { x: 20, z: 0 },
+      attackers: [{ x: 5, z: -12 }],
+      defenders: [
+        { x: 18, z: 4 },
+        { x: 16, z: -6 },
+        { x: 14, z: 12 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 28, z: -2 },
+      explanation:
+        "The striker has timed their run but set off too early. At the moment of the pass, they're at x=20 while the second-last defender is at x=16. Beyond the line — offside!",
+    },
+
+    // ===== HARD (tricky, deceiving scenarios) =====
+    {
+      title: "Deflection Off Defender",
+      difficulty: "hard",
+      offside: true,
+      passer: { x: 5, z: 0, team: "attack" },
+      subject: { x: 25, z: -3 },
+      attackers: [{ x: 10, z: 10 }],
+      defenders: [
+        { x: 20, z: -1 },
+        { x: 18, z: 7 },
+        { x: 16, z: -10 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 27, z: -4 },
+      explanation:
+        "Even though the ball deflects off a defender on the way, this is still an INTENDED pass from the attacker. A deflection or rebound off a defender does NOT reset offside. Still offside!",
+    },
+    {
+      title: "Two Attackers — Who's Offside?",
+      difficulty: "hard",
+      offside: false,
+      passer: { x: 3, z: -4, team: "attack" },
+      subject: { x: 15, z: 8 },
+      attackers: [{ x: 24, z: -6 }],
+      defenders: [
+        { x: 17, z: 2 },
+        { x: 15, z: -8 },
+        { x: 13, z: 12 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 20, z: 10 },
+      explanation:
+        "There are two attackers in dangerous positions. The other attacker at x=24 IS in an offside position — but the ball goes to the subject at x=15 who is LEVEL with the second-last defender. Only the player who receives the ball matters. Onside!",
+    },
+    {
+      title: "GK is Second-Last — Trap!",
+      difficulty: "hard",
+      offside: true,
+      passer: { x: 8, z: 5, team: "attack" },
+      subject: { x: 26, z: -2 },
+      attackers: [{ x: 12, z: -10 }],
+      defenders: [
+        { x: 28, z: 4 },
+      ],
+      gk: { x: 24, z: 0 },
+      ballTarget: { x: 30, z: -3 },
+      explanation:
+        "Tricky! One defender is at x=28 and the GK is at x=24. The second-last opponent is the GK at x=24. The attacker at x=26 is beyond the GK — offside! Remember: the GK counts as an opponent too.",
+    },
+    {
+      title: "Offside but Not Interfering",
+      difficulty: "hard",
+      offside: false,
+      passer: { x: 0, z: 8, team: "attack" },
+      subject: { x: 10, z: -3 },
+      attackers: [{ x: 24, z: 5 }],
+      defenders: [
+        { x: 16, z: 0 },
+        { x: 14, z: 8 },
+        { x: 12, z: -10 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 14, z: -5 },
+      explanation:
+        "There's an attacker in an offside position at x=24, but the ball is played SHORT to the subject at x=10, well behind the defensive line. Being in an offside POSITION is not an offence — you must interfere with play. The pass goes to an onside player. Play on!",
+    },
+    {
+      title: "Marginal — Shoulder vs Arm",
+      difficulty: "hard",
+      offside: false,
+      passer: { x: 2, z: 6, team: "attack" },
+      subject: { x: 17.5, z: -4 },
+      attackers: [{ x: 8, z: 14 }],
+      defenders: [
+        { x: 18, z: 2 },
+        { x: 16, z: 10 },
+        { x: 14, z: -8 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 24, z: -5 },
+      explanation:
+        "Super tight! The attacker's body is level with the defender — but imagine if their arm was slightly ahead. Arms DON'T count for offside! Only parts of the body you can score with (head, body, feet). Onside!",
+    },
+    {
+      title: "Attacker Runs Back From Offside",
+      difficulty: "hard",
+      offside: true,
+      passer: { x: 5, z: 3, team: "attack" },
+      subject: { x: 22, z: -6 },
+      attackers: [{ x: 10, z: 8 }],
+      defenders: [
+        { x: 19, z: -2 },
+        { x: 17, z: 5 },
+        { x: 15, z: 12 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 26, z: -7 },
+      explanation:
+        "The attacker was in an offside position when the ball was played (x=22 vs defender at x=19), even though they may run back to collect the ball. It's the position at the MOMENT OF THE PASS that matters, not where they receive it!",
+    },
+    {
+      title: "High Press — All Up",
+      difficulty: "hard",
+      offside: false,
+      passer: { x: -8, z: -2, team: "attack" },
+      subject: { x: 6, z: 0 },
+      attackers: [{ x: -2, z: 10 }],
+      defenders: [
+        { x: 8, z: -4 },
+        { x: 6, z: 6 },
+        { x: 4, z: 12 },
+      ],
+      gk: { x: 32, z: 0 },
+      ballTarget: { x: 14, z: 2 },
+      explanation:
+        "The defenders are pressing extremely high (up at x=4-8). The attacker at x=6 is LEVEL with the defensive line. Level is always onside — no matter how high the line is!",
+    },
   ];
+
+  // Active (filtered + shuffled) scenario list
+  let scenarios3D = [];
+  let currentDifficulty = "all";
+  let scenariosPerRound = 8;
+  let timedMode = false;
+  let decisionTimer = null;
+  let decisionTimeLeft = 0;
+  const DECISION_TIME = 4; // seconds to decide on hard-timed
+
+  // Fisher-Yates shuffle
+  function shuffleArray(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  // Build scenario list based on difficulty
+  function buildScenarioList(difficulty) {
+    currentDifficulty = difficulty;
+    let pool;
+    if (difficulty === "all") {
+      pool = allScenarios.slice();
+    } else {
+      pool = allScenarios.filter((s) => s.difficulty === difficulty);
+    }
+    // Shuffle and pick up to scenariosPerRound
+    pool = shuffleArray(pool);
+    // Ensure a mix of offside/onside when possible
+    const offside = pool.filter((s) => s.offside);
+    const onside = pool.filter((s) => !s.offside);
+    // Interleave for variety
+    const mixed = [];
+    const maxLen = Math.max(offside.length, onside.length);
+    for (let i = 0; i < maxLen; i++) {
+      if (i < onside.length) mixed.push(onside[i]);
+      if (i < offside.length) mixed.push(offside[i]);
+    }
+    // Re-shuffle the interleaved list for unpredictability
+    scenarios3D = shuffleArray(mixed).slice(0, scenariosPerRound);
+    // Timed mode only on hard
+    timedMode = difficulty === "hard";
+  }
 
   // ---- Initialization ----
   function init3D() {
@@ -190,7 +467,7 @@
     container.appendChild(renderer.domElement);
 
     // Camera
-    camera = new THREE.PerspectiveCamera(50, W / H, 0.1, 200);
+    camera = new THREE.PerspectiveCamera(75, W / H, 0.1, 200);
     setCameraPosition("linesman", true);
 
     // Lights
@@ -232,6 +509,9 @@
 
     // Start render loop
     animate();
+
+    // Build initial scenario list (default: all, shuffled)
+    buildScenarioList("all");
 
     // Load first scenario
     load3DScenario(0);
@@ -634,7 +914,7 @@
     switch (mode) {
       case "linesman":
         return {
-          pos: { x: 15, y: 1.7, z: -PH / 2 - 1.5 },
+          pos: { x: 15, y: 1.85, z: -PH / 2 - 1.5 },
           target: { x: 10, y: 1.0, z: 0 },
         };
       case "broadcast":
@@ -654,7 +934,7 @@
         };
       default:
         return {
-          pos: { x: 15, y: 1.7, z: -PH / 2 - 1.5 },
+          pos: { x: 15, y: 1.85, z: -PH / 2 - 1.5 },
           target: { x: 10, y: 1.0, z: 0 },
         };
     }
@@ -863,10 +1143,17 @@
     document.getElementById("hud-scenario").textContent =
       idx + 1 + " / " + scenarios3D.length;
     document.getElementById("hud-streak").textContent = "🔥 " + score3D.streak;
+    // Show difficulty badge on HUD
+    const diffBadge = document.getElementById("hud-difficulty");
+    if (diffBadge && s.difficulty) {
+      diffBadge.textContent = s.difficulty.toUpperCase();
+      diffBadge.className = "hud-diff-badge diff-" + s.difficulty;
+    }
 
     // Reset UI
     document.getElementById("freezeBanner").style.display = "none";
     document.getElementById("decisionButtons").style.display = "none";
+    clearDecisionTimer();
     document.getElementById("result3d").className = "result-3d";
     document.getElementById("btn3dOffside").disabled = false;
     document.getElementById("btn3dOnside").disabled = false;
@@ -963,24 +1250,24 @@
     animateScenario(t, 0);
     updateCamera(t);
 
-    // Show/hide offside line based on time and user toggle
+    // Show/hide offside line — only when user toggles it on
     if (offsideLineObj) {
-      if (offsideLineUserOff) {
-        offsideLineObj.visible = false;
-      } else {
-        offsideLineObj.visible = offsideLineForced || t >= animDuration;
-      }
+      offsideLineObj.visible = offsideLineForced;
     }
 
     // Show/hide freeze banner & buttons
     if (t >= animDuration && !answered3D) {
       document.getElementById("freezeBanner").style.display = "block";
       document.getElementById("decisionButtons").style.display = "flex";
+      if (!frozen && timedMode && !decisionTimer) {
+        startDecisionTimer();
+      }
       frozen = true;
     } else if (t < animDuration) {
       if (!answered3D) {
         document.getElementById("freezeBanner").style.display = "none";
         document.getElementById("decisionButtons").style.display = "none";
+        clearDecisionTimer();
       }
       frozen = false;
     }
@@ -1011,20 +1298,10 @@
   };
 
   window.toggleOffsideLine = function () {
+    offsideLineForced = !offsideLineForced;
     const btn = document.getElementById("btnShowLine");
-    // If line is currently visible (forced or at freeze), turn it off
-    if (offsideLineObj && offsideLineObj.visible) {
-      offsideLineForced = false;
-      offsideLineUserOff = true;
-      offsideLineObj.visible = false;
-      btn.classList.remove("active");
-    } else {
-      // Turn it on
-      offsideLineForced = true;
-      offsideLineUserOff = false;
-      if (offsideLineObj) offsideLineObj.visible = true;
-      btn.classList.add("active");
-    }
+    btn.classList.toggle("active", offsideLineForced);
+    if (offsideLineObj) offsideLineObj.visible = offsideLineForced;
   };
 
   // ---- Animation Loop ----
@@ -1222,10 +1499,96 @@
     }, 300);
   }
 
+  // ---- Decision Timer (Hard mode) ----
+  function startDecisionTimer() {
+    decisionTimeLeft = DECISION_TIME;
+    const timerEl = document.getElementById("decisionTimer");
+    if (timerEl) {
+      timerEl.style.display = "block";
+      timerEl.textContent = decisionTimeLeft.toFixed(1) + "s";
+      timerEl.classList.remove("timer-urgent");
+    }
+    decisionTimer = setInterval(() => {
+      decisionTimeLeft -= 0.1;
+      if (timerEl) {
+        timerEl.textContent = Math.max(0, decisionTimeLeft).toFixed(1) + "s";
+        if (decisionTimeLeft <= 1.5) timerEl.classList.add("timer-urgent");
+      }
+      if (decisionTimeLeft <= 0) {
+        clearDecisionTimer();
+        // Time's up — count as wrong (random guess)
+        if (!answered3D) {
+          timedOut3D();
+        }
+      }
+    }, 100);
+  }
+
+  function clearDecisionTimer() {
+    if (decisionTimer) {
+      clearInterval(decisionTimer);
+      decisionTimer = null;
+    }
+    const timerEl = document.getElementById("decisionTimer");
+    if (timerEl) timerEl.style.display = "none";
+  }
+
+  function timedOut3D() {
+    answered3D = true;
+    clearDecisionTimer();
+
+    const s = scenarios3D[current3DScenario];
+    score3D.wrong++;
+    score3D.streak = 0;
+
+    document.getElementById("btn3dOffside").disabled = true;
+    document.getElementById("btn3dOnside").disabled = true;
+    document.getElementById("freezeBanner").style.display = "none";
+
+    const result = document.getElementById("result3d");
+    const verdict = document.getElementById("result3dVerdict");
+    const sub = document.getElementById("result3dSub");
+
+    verdict.textContent = "⏱️ TOO SLOW!";
+    sub.textContent = s.offside
+      ? "It was OFFSIDE — a real linesman needs to react fast!"
+      : "It was ONSIDE — you hesitated too long!";
+    result.className = "result-3d wrong show";
+
+    const expl = document.getElementById("explanation3d");
+    expl.textContent = s.explanation;
+    expl.classList.add("show");
+
+    const total = score3D.correct + score3D.wrong;
+    document.getElementById("t3Correct").textContent = "✓ " + score3D.correct;
+    document.getElementById("t3Wrong").textContent = "✗ " + score3D.wrong;
+    document.getElementById("t3Total").textContent =
+      total + " / " + scenarios3D.length;
+    document.getElementById("t3Progress").style.width =
+      (total / scenarios3D.length) * 100 + "%";
+    document.getElementById("hud-streak").textContent = "🔥 " + score3D.streak;
+
+    if (current3DScenario < scenarios3D.length - 1) {
+      document.getElementById("btn3dNext").style.display = "";
+    } else {
+      document.getElementById("btn3dRestart").style.display = "";
+      const pct = Math.round((score3D.correct / scenarios3D.length) * 100);
+      let msg =
+        pct >= 80
+          ? "🎉 Superb! You're ready for matchday!"
+          : pct >= 60
+            ? "👍 Decent — a few more rounds will sharpen you up."
+            : "📚 Keep at it! Try again and focus on the key moments.";
+      expl.textContent += `\n\nFinal Score: ${score3D.correct}/${scenarios3D.length} (${pct}%) — ${msg}`;
+    }
+    animState = "result";
+  }
+
   // ---- Submit 3D Answer ----
   window.submit3DAnswer = function (isOffside) {
     if (answered3D) return;
     answered3D = true;
+    clearDecisionTimer();
 
     const s = scenarios3D[current3DScenario];
     const correct = isOffside === s.offside;
@@ -1310,6 +1673,7 @@
     isPlaying = true;
     offsideLineForced = false;
     offsideLineUserOff = false;
+    clearDecisionTimer();
     document.getElementById("btnPlayPause").textContent = "⏸";
     document.getElementById("btnShowLine").classList.remove("active");
     if (offsideLineObj) offsideLineObj.visible = false;
@@ -1327,6 +1691,8 @@
   window.restart3D = function () {
     current3DScenario = 0;
     score3D = { correct: 0, wrong: 0, streak: 0 };
+    // Re-shuffle for a fresh round
+    buildScenarioList(currentDifficulty);
     document.getElementById("t3Correct").textContent = "✓ 0";
     document.getElementById("t3Wrong").textContent = "✗ 0";
     document.getElementById("t3Total").textContent =
@@ -1334,6 +1700,32 @@
     document.getElementById("t3Progress").style.width = "0%";
     load3DScenario(0);
     clock.start();
+  };
+
+  // ---- Difficulty selector ----
+  window.setDifficulty = function (difficulty) {
+    // Update button states
+    document.querySelectorAll(".diff-btn").forEach((b) => b.classList.remove("active"));
+    const btn = document.querySelector('.diff-btn[data-diff="' + difficulty + '"]');
+    if (btn) btn.classList.add("active");
+
+    // Show/hide timed badge
+    const badge = document.getElementById("timedBadge");
+    if (badge) badge.style.display = difficulty === "hard" ? "inline" : "none";
+
+    // Rebuild and restart
+    current3DScenario = 0;
+    score3D = { correct: 0, wrong: 0, streak: 0 };
+    buildScenarioList(difficulty);
+    document.getElementById("t3Correct").textContent = "✓ 0";
+    document.getElementById("t3Wrong").textContent = "✗ 0";
+    document.getElementById("t3Total").textContent =
+      "0 / " + scenarios3D.length;
+    document.getElementById("t3Progress").style.width = "0%";
+    if (initialized) {
+      load3DScenario(0);
+      clock.start();
+    }
   };
 
   // ---- Tab activation hook ----

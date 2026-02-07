@@ -6,6 +6,15 @@
         made, the action <strong>freezes</strong> — make your call!
     </p>
 
+    <div class="difficulty-selector">
+        <span class="diff-label">Difficulty:</span>
+        <button class="diff-btn active" data-diff="all" onclick="setDifficulty('all')">🎯 All</button>
+        <button class="diff-btn" data-diff="easy" onclick="setDifficulty('easy')">🟢 Easy</button>
+        <button class="diff-btn" data-diff="medium" onclick="setDifficulty('medium')">🟡 Medium</button>
+        <button class="diff-btn" data-diff="hard" onclick="setDifficulty('hard')">🔴 Hard</button>
+        <span class="timed-badge" id="timedBadge" style="display:none">⏱️ TIMED</span>
+    </div>
+
     <div class="score-bar">
         <span class="score-correct" id="t3Correct">✓ 0</span>
         <span class="score-wrong" id="t3Wrong">✗ 0</span>
@@ -37,10 +46,15 @@
                 <span id="hud-scenario">1 / 8</span>
             </div>
             <div class="hud-box">
+                <span class="label">DIFFICULTY</span>
+                <span class="hud-diff-badge" id="hud-difficulty"></span>
+            </div>
+            <div class="hud-box">
                 <span class="label">STREAK</span>
                 <span class="hud-streak" id="hud-streak">🔥 0</span>
             </div>
         </div>
+        <div class="decision-timer" id="decisionTimer" style="display:none">4.0s</div>
         <div class="freeze-banner" id="freezeBanner">
             ⏸️ FREEZE! Make your call — Offside or Onside?
         </div>

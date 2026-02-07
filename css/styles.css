@@ -364,6 +364,120 @@ button:disabled {
   color: #fdd835;
 }
 
+/* Difficulty selector */
+.difficulty-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0.5rem;
+  flex-wrap: wrap;
+}
+.diff-label {
+  font-weight: 600;
+  color: #ccc;
+  margin-right: 0.25rem;
+  font-size: 0.9rem;
+}
+.diff-btn {
+  padding: 0.4rem 1rem;
+  border: 2px solid #444;
+  border-radius: 8px;
+  background: #1a1a2e;
+  color: #ccc;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.diff-btn:hover {
+  border-color: #888;
+  color: #fff;
+}
+.diff-btn.active {
+  border-color: #4fc3f7;
+  background: #0d2948;
+  color: #4fc3f7;
+}
+.diff-btn[data-diff="easy"].active {
+  border-color: #66bb6a;
+  background: #1b3a1b;
+  color: #66bb6a;
+}
+.diff-btn[data-diff="medium"].active {
+  border-color: #ffa726;
+  background: #3a2e1b;
+  color: #ffa726;
+}
+.diff-btn[data-diff="hard"].active {
+  border-color: #ef5350;
+  background: #3a1b1b;
+  color: #ef5350;
+}
+.timed-badge {
+  background: #ef5350;
+  color: #fff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  animation: pulse-badge 1s ease infinite;
+}
+@keyframes pulse-badge {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* HUD difficulty badge */
+.hud-diff-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.diff-easy {
+  background: #2e7d32;
+  color: #a5d6a7;
+}
+.diff-medium {
+  background: #e65100;
+  color: #ffcc80;
+}
+.diff-hard {
+  background: #c62828;
+  color: #ef9a9a;
+}
+
+/* Decision timer */
+.decision-timer {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: #4fc3f7;
+  font-size: 2rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  padding: 6px 20px;
+  border-radius: 10px;
+  border: 2px solid #4fc3f7;
+  z-index: 25;
+  text-align: center;
+  min-width: 80px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.decision-timer.timer-urgent {
+  color: #ef5350;
+  border-color: #ef5350;
+  animation: timer-shake 0.3s ease infinite;
+}
+@keyframes timer-shake {
+  0%, 100% { transform: translateX(-50%) rotate(0deg); }
+  25% { transform: translateX(-50%) rotate(-2deg); }
+  75% { transform: translateX(-50%) rotate(2deg); }
+}
+
 .camera-controls {
   display: flex;
   justify-content: center;
