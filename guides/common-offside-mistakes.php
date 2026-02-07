@@ -54,7 +54,7 @@ include '../includes/article-header.php';
     </p>
     <p>
         This situation is rare at grassroots level, but when it happens, it catches everyone out. Read more
-        about it in our <a href="tricky-offside-scenarios" class="guide-link">tricky scenarios guide</a>.
+        about it in our <a href="tricky-offside-scenarios.php" class="guide-link">tricky scenarios guide</a>.
     </p>
 
     <h3>5. Flagging Immediately Instead of Waiting</h3>
@@ -99,7 +99,8 @@ include '../includes/article-header.php';
 
     <p>
         For more challenging situations, check out our guide to the
-        <a href="tricky-offside-scenarios" class="guide-link">5 tricky offside scenarios that catch everyone out</a>.
+        <a href="tricky-offside-scenarios.php" class="guide-link">5 tricky offside scenarios that catch everyone
+            out</a>.
     </p>
 </article>
 

@@ -140,19 +140,19 @@
         <p class="home-guides-intro">In-depth articles written specifically for parents at grassroots kids' football.
         </p>
         <div class="home-guides-grid">
-            <a href="guides/first-time-linesman" class="home-guide-link">
+            <a href="guides/first-time-linesman.php" class="home-guide-link">
                 <span>🆕</span> Your First Time as Linesman
             </a>
-            <a href="guides/common-offside-mistakes" class="home-guide-link">
+            <a href="guides/common-offside-mistakes.php" class="home-guide-link">
                 <span>⚠️</span> 7 Common Offside Mistakes
             </a>
-            <a href="guides/tricky-offside-scenarios" class="home-guide-link">
+            <a href="guides/tricky-offside-scenarios.php" class="home-guide-link">
                 <span>🧩</span> 5 Tricky Scenarios
             </a>
-            <a href="guides/club-assistant-referee-guide" class="home-guide-link">
+            <a href="guides/club-assistant-referee-guide.php" class="home-guide-link">
                 <span>🏟️</span> Complete AR Guide
             </a>
-            <a href="guides/offside-rule-faq" class="home-guide-link">
+            <a href="guides/offside-rule-faq.php" class="home-guide-link">
                 <span>❓</span> Offside Rule FAQ
             </a>
         </div>

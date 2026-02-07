@@ -6,7 +6,7 @@
 
     <div class="guide-index">
 
-        <a href="guides/first-time-linesman" class="guide-card">
+        <a href="guides/first-time-linesman.php" class="guide-card">
             <span class="guide-card-icon">🆕</span>
             <div class="guide-card-body">
                 <h3>Your First Time as Linesman — What to Expect</h3>
@@ -16,7 +16,7 @@
             </div>
         </a>
 
-        <a href="guides/common-offside-mistakes" class="guide-card">
+        <a href="guides/common-offside-mistakes.php" class="guide-card">
             <span class="guide-card-icon">⚠️</span>
             <div class="guide-card-body">
                 <h3>7 Common Offside Mistakes New Linesmen Make</h3>
@@ -26,7 +26,7 @@
             </div>
         </a>
 
-        <a href="guides/tricky-offside-scenarios" class="guide-card">
+        <a href="guides/tricky-offside-scenarios.php" class="guide-card">
             <span class="guide-card-icon">🧩</span>
             <div class="guide-card-body">
                 <h3>5 Tricky Offside Scenarios That Catch Everyone Out</h3>
@@ -36,7 +36,7 @@
             </div>
         </a>
 
-        <a href="guides/club-assistant-referee-guide" class="guide-card">
+        <a href="guides/club-assistant-referee-guide.php" class="guide-card">
             <span class="guide-card-icon">🏟️</span>
             <div class="guide-card-body">
                 <h3>Complete Guide to Being a Club Assistant Referee</h3>
@@ -46,7 +46,7 @@
             </div>
         </a>
 
-        <a href="guides/offside-rule-faq" class="guide-card">
+        <a href="guides/offside-rule-faq.php" class="guide-card">
             <span class="guide-card-icon">❓</span>
             <div class="guide-card-body">
                 <h3>Offside Rule FAQ — Quick Answers for Parents</h3>

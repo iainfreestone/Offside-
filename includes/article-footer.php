@@ -3,31 +3,31 @@
     <h3>More Guides for Parent Linesmen</h3>
     <div class="related-grid">
         <?php if ($article_slug !== 'first-time-linesman'): ?>
-            <a href="first-time-linesman" class="related-card">
+            <a href="first-time-linesman.php" class="related-card">
                 <span class="related-icon">🆕</span>
                 <span class="related-title">Your First Time as Linesman</span>
             </a>
         <?php endif; ?>
         <?php if ($article_slug !== 'common-offside-mistakes'): ?>
-            <a href="common-offside-mistakes" class="related-card">
+            <a href="common-offside-mistakes.php" class="related-card">
                 <span class="related-icon">⚠️</span>
                 <span class="related-title">7 Common Offside Mistakes</span>
             </a>
         <?php endif; ?>
         <?php if ($article_slug !== 'tricky-offside-scenarios'): ?>
-            <a href="tricky-offside-scenarios" class="related-card">
+            <a href="tricky-offside-scenarios.php" class="related-card">
                 <span class="related-icon">🧩</span>
                 <span class="related-title">5 Tricky Scenarios</span>
             </a>
         <?php endif; ?>
         <?php if ($article_slug !== 'club-assistant-referee-guide'): ?>
-            <a href="club-assistant-referee-guide" class="related-card">
+            <a href="club-assistant-referee-guide.php" class="related-card">
                 <span class="related-icon">🏟️</span>
                 <span class="related-title">Complete AR Guide</span>
             </a>
         <?php endif; ?>
         <?php if ($article_slug !== 'offside-rule-faq'): ?>
-            <a href="offside-rule-faq" class="related-card">
+            <a href="offside-rule-faq.php" class="related-card">
                 <span class="related-icon">❓</span>
                 <span class="related-title">Offside FAQ</span>
             </a>
