@@ -134,7 +134,10 @@
       offside: false,
       passer: { x: 34, z: -22, team: "attack", isCorner: true },
       subject: { x: 30, z: 2 },
-      attackers: [{ x: 28, z: -4 }, { x: 26, z: 6 }],
+      attackers: [
+        { x: 28, z: -4 },
+        { x: 26, z: 6 },
+      ],
       defenders: [
         { x: 29, z: 0 },
         { x: 27, z: 4 },
@@ -320,9 +323,7 @@
       passer: { x: 8, z: 5, team: "attack" },
       subject: { x: 26, z: -2 },
       attackers: [{ x: 12, z: -10 }],
-      defenders: [
-        { x: 28, z: 4 },
-      ],
+      defenders: [{ x: 28, z: 4 }],
       gk: { x: 24, z: 0 },
       ballTarget: { x: 30, z: -3 },
       explanation:
@@ -1705,8 +1706,12 @@
   // ---- Difficulty selector ----
   window.setDifficulty = function (difficulty) {
     // Update button states
-    document.querySelectorAll(".diff-btn").forEach((b) => b.classList.remove("active"));
-    const btn = document.querySelector('.diff-btn[data-diff="' + difficulty + '"]');
+    document
+      .querySelectorAll(".diff-btn")
+      .forEach((b) => b.classList.remove("active"));
+    const btn = document.querySelector(
+      '.diff-btn[data-diff="' + difficulty + '"]',
+    );
     if (btn) btn.classList.add("active");
 
     // Show/hide timed badge
