@@ -228,7 +228,7 @@
       gk: { x: 32, z: 0 },
       ballTarget: { x: 25, z: -6 },
       explanation:
-        "This is tight! The second-last defender is at x=17 and our attacker is at x=19 — just beyond. Even a small distance counts. In a real game, benefit of doubt goes to the attacker for marginal calls.",
+        "This is tight! The second-last opponent is at x=18 and our attacker is at x=19 — just beyond. Even a small distance counts. In a real game, benefit of doubt goes to the attacker for marginal calls.",
     },
     {
       title: "Deep Defensive Line",
@@ -245,23 +245,23 @@
       gk: { x: 32, z: 0 },
       ballTarget: { x: 26, z: 4 },
       explanation:
-        "The defenders are sitting very deep. The second-last defender is at x=22 and the attacker is at x=20 — he's behind the line. Onside!",
+        "The defenders are sitting very deep. The second-last opponent is at x=24 and the attacker is at x=20 — well behind the line. Onside!",
     },
     {
       title: "Played Backwards — No Offside",
       difficulty: "medium",
       offside: false,
-      passer: { x: 22, z: 3, team: "attack" },
-      subject: { x: 26, z: -5 },
+      passer: { x: 24, z: 3, team: "attack" },
+      subject: { x: 20, z: -5 },
       attackers: [{ x: 10, z: -8 }],
       defenders: [
-        { x: 20, z: -2 },
-        { x: 18, z: 6 },
+        { x: 14, z: -2 },
+        { x: 12, z: 6 },
       ],
       gk: { x: 32, z: 0 },
-      ballTarget: { x: 18, z: -4 },
+      ballTarget: { x: 20, z: -5 },
       explanation:
-        "Even though the attacker looks offside, they're BEHIND the ball when it's played (ball is at x=22, attacker at x=26 is further forward but the pass goes backwards). A player can't be offside if they receive a backward pass... BUT WAIT — actually the subject IS ahead of the second-last defender. However, they're behind the ball — so it's onside!",
+        "The attacker is BEHIND the ball when it's played (ball at x=24, attacker at x=20). To be offside, you must be nearer to the goal line than BOTH the ball and the second-last opponent. Since the attacker is behind the ball, they can't be offside — even though they're ahead of every defender!",
     },
     {
       title: "Striker Makes a Run",
@@ -278,7 +278,7 @@
       gk: { x: 32, z: 0 },
       ballTarget: { x: 28, z: -2 },
       explanation:
-        "The striker has timed their run but set off too early. At the moment of the pass, they're at x=20 while the second-last defender is at x=16. Beyond the line — offside!",
+        "The striker has timed their run but set off too early. At the moment of the pass, they're at x=20 while the second-last opponent is at x=18. Beyond the line — offside!",
     },
 
     // ===== HARD (tricky, deceiving scenarios) =====

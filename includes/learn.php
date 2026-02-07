@@ -13,13 +13,13 @@
             <li>
                 They are <strong>closer to the opponent's goal line</strong> than
                 both the ball <em>and</em> the
-                <strong>second-last defender</strong> (the goalkeeper is usually the
+                <strong>second-last opponent</strong> (the goalkeeper is usually the
                 last)
             </li>
         </ul>
         <div class="highlight-box">
-            <strong>Key phrase to remember:</strong> "Behind the second-last
-            defender, in the opponents' half, when the ball is played."
+            <strong>Key phrase to remember:</strong> "Beyond the second-last
+            opponent, in the opponents' half, when the ball is played."
         </div>
     </div>
 
@@ -40,8 +40,10 @@
                 the ball
             </li>
             <li>
-                <strong>Gains an advantage</strong> — plays a ball that rebounds off
-                the post, crossbar, or a defender having been in an offside position
+                <strong>Gains an advantage</strong> — plays a ball that rebounds
+                or deflects off the goalpost, crossbar, match official, or an
+                opponent; or plays a ball that has been deliberately saved by
+                any opponent
             </li>
         </ul>
     </div>
@@ -56,7 +58,7 @@
             </li>
             <li>The player is in their <strong>own half</strong> of the pitch</li>
             <li>
-                The player is <strong>level with</strong> the second-last defender
+                The player is <strong>level with</strong> the second-last opponent
                 (level is onside!)
             </li>
             <li>
@@ -72,11 +74,15 @@
     <div class="card">
         <h3>Body Parts That Count</h3>
         <p>
-            Only parts of the body that can
-            <strong>legitimately play the ball</strong> are considered — head,
-            body, and feet. <strong>Arms and hands do not count</strong> (just as
-            for any outfield player). So if a player's arm is past the defender
-            but their body isn't, they're onside.
+            Offside position is judged using the <strong>head, body, and
+                feet</strong> only. <strong>Arms and hands do not count</strong>
+            for any player, including goalkeepers. The boundary of the arm is
+            defined as the bottom of the armpit — anything below that line is
+            considered "arm" and is ignored.
+        </p>
+        <p>
+            So if a player's arm is past the defender but their head, body, and
+            feet aren't, they are <strong>onside</strong>.
         </p>
     </div>
 

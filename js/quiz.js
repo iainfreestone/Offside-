@@ -22,7 +22,7 @@ const quizQuestions = [
     ],
     correct: 1,
     explanation:
-      "Level is onside! If the attacker is level with the second-last defender, they are NOT in an offside position.",
+      "Level is onside! If the attacker is level with the second-last opponent, they are NOT in an offside position.",
   },
   {
     q: "A player is in an offside position but doesn't touch the ball and doesn't interfere with play. Is this an offence?",
@@ -49,16 +49,16 @@ const quizQuestions = [
       "Offside position is judged using any body part with which a player can legitimately play the ball — head, body, and feet. Arms and hands do NOT count.",
   },
   {
-    q: "The goalkeeper has come up for a corner. Now there's only one defender back. An attacker is behind that defender but ahead of where the goalkeeper was. Is this offside?",
+    q: "The goalkeeper has come up for a corner kick. On the counter-attack, only one defender is back near the goal and the goalkeeper is stranded near the halfway line. An attacker receives the ball between the last defender and the goalkeeper. Offside?",
     options: [
-      "No, the goalkeeper doesn't count",
-      "Yes — with only one defender between attacker and goal, they need to be behind that player",
-      "It depends on whether the goalie is in their area",
-      "Only if they touch the ball",
+      "No, the goalkeeper's position doesn't matter",
+      "Yes — the goalkeeper is now the second-last opponent, and the attacker is ahead of them",
+      "It depends on whether the goalie is in their own area",
+      "Only if the attacker scores",
     ],
     correct: 1,
     explanation:
-      "The rule says TWO opponents (usually GK + 1 defender). If the GK is up the pitch, the last defender becomes 'one', so the attacker needs to be behind the SECOND-last opponent — which would require being behind the GK too. With only one opponent between attacker and goal, the attacker is offside.",
+      "The offside rule requires the attacker to be behind the SECOND-LAST opponent. Normally the second-last opponent is the last outfield defender (with the GK being the 'last'). But when the GK comes upfield, the GK becomes the second-last opponent. Since the attacker is ahead of the GK, they are offside — even though they are behind the last defender!",
   },
   {
     q: "A player is in their own half when a team-mate passes the ball forward. They sprint into the opponents' half to collect it. Offside?",
@@ -88,7 +88,7 @@ const quizQuestions = [
     q: "A defender deliberately kicks the ball forward and an attacker who was in an offside position picks it up. What's the call?",
     options: [
       "Offside — the attacker was in an offside position",
-      "Onside — the ball was played by a defender",
+      "Onside — the defender deliberately played the ball",
       "It depends on whether it was a pass or a clearance",
       "Always offside if in the opponents' half",
     ],
