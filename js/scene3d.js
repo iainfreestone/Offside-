@@ -26,6 +26,7 @@
   let isPlaying = true;
   let sliderDragging = false;
   let offsideLineForced = false;
+  let offsideLineUserOff = false;
 
   // Smooth camera state
   let camPos = { x: 15, y: 3.5, z: -28.5 }; // current interpolated position
@@ -582,32 +583,45 @@
     if (offsideLineObj) scene.remove(offsideLineObj);
     const group = new THREE.Group();
 
-    // Dashed line across pitch
-    const lineGeo = new THREE.PlaneGeometry(0.12, PH + 2);
+    // Bold line on the ground
+    const lineGeo = new THREE.PlaneGeometry(0.3, PH + 4);
     const lineMat = new THREE.MeshBasicMaterial({
-      color: 0xff3333,
+      color: 0xff1111,
       transparent: true,
-      opacity: 0.7,
+      opacity: 0.85,
       side: THREE.DoubleSide,
     });
     const line = new THREE.Mesh(lineGeo, lineMat);
     line.rotation.x = -Math.PI / 2;
     line.rotation.z = Math.PI / 2;
-    line.position.set(xPos, 0.03, 0);
+    line.position.set(xPos, 0.05, 0);
     group.add(line);
 
-    // Vertical transparent wall for visibility
-    const wallGeo = new THREE.PlaneGeometry(0.08, 3);
-    const wallMat = new THREE.MeshBasicMaterial({
+    // Tall vertical curtain — one solid plane across the whole pitch
+    const curtainGeo = new THREE.PlaneGeometry(PH + 4, 3);
+    const curtainMat = new THREE.MeshBasicMaterial({
+      color: 0xff2222,
+      transparent: true,
+      opacity: 0.18,
+      side: THREE.DoubleSide,
+      depthWrite: false,
+    });
+    const curtain = new THREE.Mesh(curtainGeo, curtainMat);
+    curtain.position.set(xPos, 1.5, 0);
+    curtain.rotation.y = Math.PI / 2;
+    group.add(curtain);
+
+    // Dashed vertical poles for depth cues
+    const poleMat = new THREE.MeshBasicMaterial({
       color: 0xff3333,
       transparent: true,
-      opacity: 0.12,
-      side: THREE.DoubleSide,
+      opacity: 0.6,
     });
-    for (let z = -PH / 2; z <= PH / 2; z += 3) {
-      const wall = new THREE.Mesh(wallGeo, wallMat);
-      wall.position.set(xPos, 1.5, z);
-      group.add(wall);
+    for (let z = -PH / 2; z <= PH / 2; z += 5) {
+      const poleGeo = new THREE.CylinderGeometry(0.06, 0.06, 3, 6);
+      const pole = new THREE.Mesh(poleGeo, poleMat);
+      pole.position.set(xPos, 1.5, z);
+      group.add(pole);
     }
 
     scene.add(group);
@@ -620,8 +634,8 @@
     switch (mode) {
       case "linesman":
         return {
-          pos: { x: 15, y: 3.5, z: -PH / 2 - 6 },
-          target: { x: 10, y: 0, z: 0 },
+          pos: { x: 15, y: 1.7, z: -PH / 2 - 1.5 },
+          target: { x: 10, y: 1.0, z: 0 },
         };
       case "broadcast":
         return {
@@ -640,8 +654,8 @@
         };
       default:
         return {
-          pos: { x: 15, y: 3.5, z: -PH / 2 - 6 },
-          target: { x: 10, y: 0, z: 0 },
+          pos: { x: 15, y: 1.7, z: -PH / 2 - 1.5 },
+          target: { x: 10, y: 1.0, z: 0 },
         };
     }
   }
@@ -695,7 +709,7 @@
         camGoalPos.y = base.pos.y;
         camGoalPos.z = base.pos.z;
         camGoalTarget.x = lerp(base.target.x, midX, preT * 0.4);
-        camGoalTarget.y = 0.5;
+        camGoalTarget.y = 1.0;
         camGoalTarget.z = lerp(
           base.target.z,
           (s.passer.z + s.subject.z) / 2,
@@ -714,14 +728,14 @@
           subjectX - 3,
           smoothT,
         );
-        camGoalPos.y = lerp(base.pos.y, 3, smoothT * 0.3);
+        camGoalPos.y = base.pos.y;
         camGoalPos.z = base.pos.z;
         camGoalTarget.x = lerp(
           (s.passer.x + s.subject.x) / 2,
           subjectX,
           smoothT,
         );
-        camGoalTarget.y = lerp(0.5, 1, smoothT);
+        camGoalTarget.y = 1.0;
         camGoalTarget.z = lerp(
           (s.passer.z + s.subject.z) / 2,
           s.subject.z,
@@ -860,6 +874,7 @@
     document.getElementById("btn3dRestart").style.display = "none";
     document.getElementById("explanation3d").classList.remove("show");
     offsideLineForced = false;
+    offsideLineUserOff = false;
 
     // Camera follows linesman-style
     setCameraPosition(currentCamMode, true);
@@ -948,9 +963,13 @@
     animateScenario(t, 0);
     updateCamera(t);
 
-    // Show/hide offside line based on time
+    // Show/hide offside line based on time and user toggle
     if (offsideLineObj) {
-      offsideLineObj.visible = offsideLineForced || t >= animDuration;
+      if (offsideLineUserOff) {
+        offsideLineObj.visible = false;
+      } else {
+        offsideLineObj.visible = offsideLineForced || t >= animDuration;
+      }
     }
 
     // Show/hide freeze banner & buttons
@@ -992,11 +1011,19 @@
   };
 
   window.toggleOffsideLine = function () {
-    offsideLineForced = !offsideLineForced;
     const btn = document.getElementById("btnShowLine");
-    btn.classList.toggle("active", offsideLineForced);
-    if (offsideLineObj) {
-      offsideLineObj.visible = offsideLineForced || animTime >= animDuration;
+    // If line is currently visible (forced or at freeze), turn it off
+    if (offsideLineObj && offsideLineObj.visible) {
+      offsideLineForced = false;
+      offsideLineUserOff = true;
+      offsideLineObj.visible = false;
+      btn.classList.remove("active");
+    } else {
+      // Turn it on
+      offsideLineForced = true;
+      offsideLineUserOff = false;
+      if (offsideLineObj) offsideLineObj.visible = true;
+      btn.classList.add("active");
     }
   };
 
@@ -1282,6 +1309,7 @@
     animState = "playing";
     isPlaying = true;
     offsideLineForced = false;
+    offsideLineUserOff = false;
     document.getElementById("btnPlayPause").textContent = "⏸";
     document.getElementById("btnShowLine").classList.remove("active");
     if (offsideLineObj) offsideLineObj.visible = false;
